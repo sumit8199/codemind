@@ -18,6 +18,7 @@ from app.agents.security_agent import SecurityAgent
 from app.agents.performance_agent import PerformanceAgent
 from app.agents.quality_agent import QualityAgent
 from app.agents.coverage_agent import TestAgent
+from app.agents.migration_agent import MigrationAgent
 from app.agents.final_reviewer import FinalReviewer
 from app.analyzers.static_analyzer import StaticAnalyzer
 
@@ -39,6 +40,7 @@ class ReviewWorkflowOrchestrator:
             "performance": PerformanceAgent(),
             "quality": QualityAgent(),
             "tests": TestAgent(),
+            "migration": MigrationAgent(),
         }
 
     async def _run_agent_with_timeout(

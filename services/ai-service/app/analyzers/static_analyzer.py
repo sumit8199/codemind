@@ -83,6 +83,30 @@ class StaticAnalyzer:
             "impact": "Failures fail silently, complicating debugging and leaving systems in inconsistent states.",
             "recommendation": "Log the error with structured context and rethrow or return an explicit error result.",
             "patch": "catch (err) {\n  logger.error('Operation failed', { error: err });\n  throw err;\n}"
+        },
+        {
+            "name": "Non-Concurrent Index Creation in Migration DDL",
+            "regex": re.compile(r"""(?i)\bcreate\s+(?:unique\s+)?index\s+(?!concurrently\b)"""),
+            "category": "migration",
+            "severity": SeverityEnum.HIGH,
+            "confidence": 0.97,
+            "cwe": "CWE-400",
+            "description": "Creating an index without CONCURRENTLY locks the table against write transactions.",
+            "impact": "Production table write lock causing connection pool queueing and user request timeouts.",
+            "recommendation": "Use CREATE INDEX CONCURRENTLY outside a transaction block.",
+            "patch": "CREATE INDEX CONCURRENTLY idx_name ON table_name (column_name);"
+        },
+        {
+            "name": "Destructive Table or Column Drop (Data Loss Risk)",
+            "regex": re.compile(r"""(?i)\balter\s+table\s+.+\s+drop\s+column\b|\bdrop\s+table\b"""),
+            "category": "migration",
+            "severity": SeverityEnum.CRITICAL,
+            "confidence": 0.99,
+            "cwe": "CWE-284",
+            "description": "DROP COLUMN or DROP TABLE causes irreversible data deletion and breaks active application instances.",
+            "impact": "Immediate permanent data loss and 500 runtime exceptions during rolling updates.",
+            "recommendation": "Follow expand-contract: deprecate column in code first, deploy, then safely archive and drop.",
+            "patch": "-- Deprecate in application code first, then drop in subsequent maintenance window"
         }
     ]
 
