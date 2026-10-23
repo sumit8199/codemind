@@ -21,6 +21,8 @@ out/
 .env
 .env.local
 .env.*.local
+.env.example
+environment.example
 *.pem
 *.key
 
