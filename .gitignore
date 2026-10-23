@@ -46,3 +46,16 @@ coverage/
 *.sqlite
 *.sqlite3
 *.db
+
+# Internal specs and planning docs (only README.md should be shown on GitHub)
+docs/
+agent-specifications.md
+antigravity-start-prompt.md
+api-contract.md
+architecture.md
+data-model.md
+implementation-plan.md
+requirements.md
+security.md
+testing-strategy.md
+
