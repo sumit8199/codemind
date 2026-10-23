@@ -1,0 +1,27 @@
+{
+  "name": "codemind-ai",
+  "version": "1.0.0",
+  "description": "CodeMind AI — Multi-Agent Code Review Platform",
+  "private": true,
+  "scripts": {
+    "dev:api": "npm --prefix services/api run dev",
+    "dev:web": "npm --prefix services/web run dev",
+    "dev:ai": "powershell -Command \"cd services/ai-service; uvicorn main:app --reload --port 8000\"",
+    "test:api": "npm --prefix services/api test",
+    "test:ai": "powershell -Command \"cd services/ai-service; pytest\"",
+    "test:web": "npm --prefix services/web test",
+    "test": "npm run test:api",
+    "build:api": "npm --prefix services/api run build",
+    "build:web": "npm --prefix services/web run build",
+    "docker:up": "docker compose up -d",
+    "docker:down": "docker compose down"
+  },
+  "keywords": [
+    "code-review",
+    "multi-agent",
+    "ai",
+    "security-audit"
+  ],
+  "author": "CodeMind AI Team",
+  "license": "Apache-2.0"
+}
