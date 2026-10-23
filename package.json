@@ -4,9 +4,10 @@
   "description": "CodeMind AI — Multi-Agent Code Review Platform",
   "private": true,
   "scripts": {
+    "dev": "concurrently -k -n \"ai,api,web\" -c \"magenta,cyan,green\" \"npm run dev:ai\" \"npm run dev:api\" \"npm run dev:web\"",
+    "dev:ai": "powershell -Command \"cd services/ai-service; .\\.venv\\Scripts\\python.exe main.py\"",
     "dev:api": "npm --prefix services/api run dev",
     "dev:web": "npm --prefix services/web run dev",
-    "dev:ai": "powershell -Command \"cd services/ai-service; uvicorn main:app --reload --port 8000\"",
     "test:api": "npm --prefix services/api test",
     "test:ai": "powershell -Command \"cd services/ai-service; pytest\"",
     "test:web": "npm --prefix services/web test",
@@ -23,5 +24,8 @@
     "security-audit"
   ],
   "author": "CodeMind AI Team",
-  "license": "Apache-2.0"
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "concurrently": "^10.0.6"
+  }
 }

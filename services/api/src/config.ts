@@ -3,7 +3,7 @@ dotenv.config();
 
 export const config = {
   NODE_ENV: process.env.NODE_ENV || 'development',
-  PORT: parseInt(process.env.PORT || '3000', 10),
+  PORT: parseInt(process.env.PORT || '3001', 10),
   FRONTEND_ORIGIN: process.env.FRONTEND_ORIGIN || 'http://localhost:5173',
   DATABASE_URL: process.env.DATABASE_URL || 'postgresql://codemind:codemind_dev_password@localhost:5432/codemind',
   REDIS_URL: process.env.REDIS_URL || 'redis://localhost:6379',

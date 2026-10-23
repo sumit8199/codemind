@@ -17,7 +17,7 @@ export class PostgresDatabaseAdapter implements IDatabaseAdapter {
       connectionString,
       max: 10,
       idleTimeoutMillis: 30000,
-      connectionTimeoutMillis: 4000,
+      connectionTimeoutMillis: 1500,
     });
   }
 
